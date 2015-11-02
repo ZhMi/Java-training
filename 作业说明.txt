@@ -1,0 +1,92 @@
+提前给出的类：
+1.Circle.java
+2.Rectangle.java
+
+要求：
+(1)注意复用原则，尽可能利用已定义的方法来完成需要
+(2)在每个类中可自行添加必要的变量和方法。
+根据下面API接口描述，完成如下类。
+1.定义一个Point类，该类用两个double型变量表示坐标系上的一个点，其公共接口定义如下：
+public class Point
+{
+    public final static int EAST=1;
+    public final static int SOUTH=2;
+    public final static int WEST=3;
+    public final static int NORTH=4;
+    public Point();//构造方法
+    public Point(double x,double y);//构造方法
+    public Point(Point p);//构造方法
+    public void move(double x,double y);//当前点移动到指定位置
+    public void move(int way);//按指定的方向将当前点移动1个单位
+    public double distance(double x,double y);//计算两点之间距离
+    public double distance(Point p);//计算两点之间距离
+    public double getX();//返回当前点x坐标
+    public double getY();//返回当前点y坐标
+    public String toString();//以(x,y)格式返回当前点的字符串表示
+}
+然后编写一个测试类TestPoint,测试Point类。
+
+2.定义一个Line类。该类包含两个Point型的实例变量，用以表示一条线段的两个端点。其公共接口如下：
+public class Line
+{
+    public Line();//构造方法
+    public Line(double x,double y);//构造方法
+    public Line(double x1,double y1,double x2,double y2);//构造方法
+    public Line(Point p);//构造方法
+    public Line(Point p1,Point p2);//构造方法
+    public double length();//求线段的长度
+    public boolean isHoriszontal();//判断是否为水平线
+    public boolean isVertical();//判断是否为垂直线
+    public double slope();//计算线段的斜率?????
+    public Point middlePoint();//计算线段的中点
+    public boolean equals(Line l);//判断两条线段是否相等
+}
+然后编写一个测试类TestLine,测试Line类。
+
+3.通过扩展Rectangle类定义一个表示屏幕坐标系上的矩形区域的R_Rectangle类。该类包含一个Point
+型实例变量，表示矩形区域的左上角在屏幕坐标系的位置。其公共接口如下：
+public class R_Rectangle extends Rectangle
+{
+    public R_Rectangle();//构造方法
+    public R_Rectangle(Rectangle r,Point p);//构造方法
+    public R_Rectangle(double x,double y,double width,double height);//构造方法
+    public boolean contains(Point p);//测试参数点是否落在该矩形区域内
+    public void moveTo(double x,double y);//将区域移至指定位置
+    public Point getWhere();//返回区域的当前位置
+}
+然后编写一个测试类TestR_Rectangle，测试R_Rectangle类。
+
+
+4.定义一个表示区域的接口IRange，其中声明有一个用以测试指定点p是否落在区域内的方法：
+boolean contains(Point p);
+
+5.定义一个表示屏幕坐标系上的圆形区域的R_Circle类。该类扩展Circle类并实现接口IRange，
+该类包含一个Point型实例变量，表示圆区域的圆心在屏幕坐标系上的位置。
+然后编写一个测试类TestR_Circle，测试R_Circle类和IRange接口。
+
+6.完善如下测试类Test中的go方法，该类包含两个实例变量r和p。方法go的功能是：
+若点在区域r内，就按指定的方向way(东、南、西、北)不断移动，直至该点落在区域外。
+然后输出点p的坐标。
+class Test
+{
+    IRange r;
+    Point p;
+    public Test(IRange r, Point p)
+    {
+        this.r=r;
+        this.p=p;
+    }
+    public void go(int way)
+    {
+        //完成该方法
+    }
+    public static void main(String[] args)
+    {
+        Point p=new Point(90, 90);
+        IRange r=new R_Circle(50, p);// p为圆心，50为半径
+        Point p1=new Point(90, 90);
+        new Test(r, p1).go(Point.EAST);
+    }
+}
+
+7.描述为什么Point类中定义方向时使用静态常量。

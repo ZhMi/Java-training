@@ -1,0 +1,25 @@
+补充问题：
+如果方法返回数字类型时遇到无限大、无限小、非数字这种数据时，可考虑输出：
+Double.NEGATIVE_INFINITY、Double.POSITIVE_INFINITY、Double.NaN
+用户使用时，先判断是不是等于相应的值即可。
+【例子】
+public class Test
+{
+    public static double f(int x)
+    {
+        // 在计算到某种情况时，需要返回无穷(正负无穷)，或非数字(1.0/0)
+        if(x == 0)
+            return Double.POSITIVE_INFINITY;  // Double.NEGATIVE_INFINITY or Double.NaN
+        else
+            return 1;
+    }
+    public static void main(String[] args)
+    {
+        double i=f(0);
+        //判断方法
+        if(Double.isInfinite(i))
+            System.out.println("yes");
+        else
+            System.out.println("no");
+    }
+}
