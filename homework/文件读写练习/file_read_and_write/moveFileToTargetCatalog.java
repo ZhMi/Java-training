@@ -2,7 +2,7 @@ package zhmi.me.file_read_and_write;
 
 import java.io.*;  
 
-\\ 移动文件到指定目录下  
+//  移动文件到指定目录下;  
 
 public class moveFileToTargetCatalog 
 {  
